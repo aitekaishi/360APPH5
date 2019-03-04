@@ -1,0 +1,42 @@
+1:绑定结算卡:QpayIndex(change)->boundaccount
+2:绑定支付卡:QpayIndex(addpayment)()
+->boundcreditcard(验证信用卡是否支持)
+->cardinfo(申请签约支付卡)
+->idcodeacquire(绑定支付卡重发验证码,验证支付卡短信验证码 ,获取支付卡)
+
+
+绑定结算卡发送验证码OK
+获取当前结算卡信息OK
+
+银行卡验证四要素:
+    银行卡的持卡人的姓名、
+    银行卡号、
+    预留手机号、
+    身份证号的真实性。
+
+6217 9955 1001 8277 870
+
+6214 8373 1746 7037
+
+6259655533117715
+
+5254980012170051
+
+6225000622565029
+
+4391880002402497
+
+4367458888888888
+
+通道ID ：Cookies.get("wayid")
+Cookies.set("iphonenum",_this.iphone);
+Cookies.set("iphonenuma",_this.iphone.substr(0,3));
+Cookies.set("iphonenumb",_this.iphone.substr(7,4));
+支付卡号：Cookies.get("indexPayCardnum")
+支付卡银行：Cookies.get("indexPayCardname")
+
+身份证号：Cookies.get("shenfengzhen")
+结算卡银行加后四位：Cookies.get("settlecard")
+结算卡卡号全：Cookies.get("settlecard")
+支付卡id：Cookies.get("payidid")
+支付卡支持通道：Cookies.get("wayidid")

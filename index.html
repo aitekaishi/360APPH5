@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html style="width: 100%;overflow-x: hidden;">
+	<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="static/js/jquery.js"></script>
+    <script src="static/js/jqueryUI.js"></script>
+    <!--<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>-->
+    <script src="static/js/jquery.nicescroll.js"></script>
+    <script src="static/js/swiper.jquery.min.js"></script>
+    <script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=2783e28acf7b1"></script>
+    <script src="static/js/bankCardAttribution.js"></script>
+    <script src="static/js/social-share.min.js"></script>
+    <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+    <!--<script type="text/javascript" src="http://www.veryhuo.com/uploads/Common/js/jQuery.md5.js">-->
+    <title>360度车卡管家</title>
+  </head>
+  <body style="height: 100%;font-family: '微软雅黑';">
+    <div id="app" style="height: 100%;overflow: auto;"></div>
+    <!-- built files will be auto injected -->
+  </body>
+  <script>
+		//$("#app").niceScroll({});
+		/*var mySwiper = new Swiper('.swiper-container',{
+		direction: 'vertical',
+		scrollbar: '.swiper-scrollbar',
+		slidesPerView: 'auto',
+		mousewheelControl: true,
+		freeMode: true,
+		onTouchMove: function(swiper){		//手动滑动中触发
+			console.log("7777")
+		},
+		onTouchEnd: function(swiper) {
+			console.log("888")
+		}
+	});*/
+	mobShare.config( {
+	    debug: true, // 开启调试，将在浏览器的控制台输出调试信息
+	    appkey: '2783e28acf7b1', // appkey
+	    params: {
+	        url: localStorage.getItem("url"), // 分享链接
+	        title: localStorage.getItem("title"), // 分享标题
+	        description: "360°车卡管家", // 分享内容
+	        pic: localStorage.getItem("imgUrl"), // 分享图片，使用逗号,隔开
+	        reason:'',//自定义评论内容，只应用与QQ,QZone与朋友网
+	    },
+	    callback: function( plat, params ) {
+	    }
+	});
+
+	
+  </script>
+</html>
