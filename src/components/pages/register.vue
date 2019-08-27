@@ -38,7 +38,7 @@
 							<div style="color: #FFF;background: #D33C3C;font-size: 13px;text-align: center;padding: 15px;width: 96%; position: absolute;left: -10px;top: 47.5vh;" @click="showdialog = false">我知道了</div>
 				</div>
 					</x-dialog>
-			</div>	
+			</div>
   </div>
 </template>
 <script>
@@ -84,7 +84,7 @@
     		router.push('/login')
     	},
       changeDisabled () {
-        
+
       },
       getSecurityCode () {
         let wait = 60
@@ -103,7 +103,7 @@
           }
         }
         time(document.getElementById('securityCodezzz'));
-        const _this = this; 
+        const _this = this;
         //alert(this.mobileNumber.substring(this.mobileNumber.length-4))
         var base = base64.encode(this.mobileNumber.substring(this.mobileNumber.length-4));
         var basestr =  base.substring(base.length-4);
@@ -171,39 +171,27 @@
             timestamp: response.data.data.timestamp,
             nonceStr: response.data.data.nonceStr,
             signature: response.data.data.signature,
-            jsApiList: ['checkJsApi', 'scanQRCode']
+            jsApiList: ['checkJsApi', 'getLocation']
           })
           wx.error(function (res) {
             alert('出错了：' + res.errMsg)
           })
           wx.ready(function () {
             wx.checkJsApi({
-              jsApiList: ['scanQRCode'],
+              jsApiList: ['getLocation'],
               success: function (res) {
               }
             })
-            wx.scanQRCode({
-              needResult: 1,
-              scanType: 'QRCode',
-              success: function (res) {
-                var result = encodeURI(res.resultStr)
-                axios.post(api + '/activation/valid?' + 'activationCode=' + result + '&uid=' + localStorage.getItem('uid') + '&token=' + localStorage.getItem('token') + '&valid=0' + globalPM).then(function (response) {
-                  if (response.data.code !== 0) {
-                    _this.errorInfoStatus = true
-                    _this.errorInfo = response.data.msg
-                    _this.loading = false
-                    return
-                  }
-                  _this.name = true
-                  _this.activationCode = result
-									localStorage.setItem("activationCode",_this.activationCode)
-                  _this.infoText = '验证成功'
-                  _this.qrCodeText = '验证成功'
-                  _this.haha = false
-       
-                })
-              }
-            })
+            wx.getLocation({
+               type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+               success: function (res) {
+                 alert('a')
+                  var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+                  var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+                  var speed = res.speed; // 速度，以米/每秒计
+                  var accuracy = res.accuracy; // 位置精度
+               }
+            });
           })
         })
       }
@@ -265,7 +253,7 @@
   .register{
 		.vux-header{
 			z-index: 2;
-			
+
 		}
 	}
 	.registera{
@@ -285,7 +273,7 @@
 				left: 0;
 				z-index: 10000;
 			}
-			
+
 		}
 		.weui-cell {
      padding: 0 !important;
@@ -326,7 +314,7 @@
 			input{
 				color: #FFF !important;
 			}
-			
+
 		}
 	}
 	.weui-grid:after{
@@ -357,5 +345,5 @@
 			}
 		}
 	}
-		
+
 </style>
